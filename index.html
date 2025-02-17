@@ -27,16 +27,21 @@
             z-index: 1000;
         }
 
-        .nav a {
+        .nav button {
             color: white;
+            background: none;
+            border: 2px solid #fff;
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
-            transition: color 0.3s;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: color 0.3s, background-color 0.3s;
         }
 
-        .nav a:hover {
-            color: #ffcc80;
+        .nav button:hover {
+            background-color: #ffcc80;
+            color: #2d3436;
         }
 
         
@@ -153,12 +158,12 @@
 <body>
     
     <div class="nav">
-        <a href="#home">Пингвины</a>
-        <a href="#habitat">Среда обитания</a>
-        <a href="#food">Питание</a>
-        <a href="#species">Виды</a>
-        <a href="#facts">Факты</a>
-        <a href="#contact">Связь</a>
+        <button onclick="window.location.href='#home'">Пингвины</button>
+        <button onclick="window.location.href='#habitat'">Среда обитания</button>
+        <button onclick="window.location.href='#food'">Питание</button>
+        <button onclick="window.location.href='#species'">Виды</button>
+        <button onclick="window.location.href='#facts'">Факты</button>
+        <button onclick="window.location.href='#contact'">Связь</button>
     </div>
 
     
