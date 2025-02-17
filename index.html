@@ -7,16 +7,14 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
             text-align: center;
-            scroll-behavior: smooth; 
+            scroll-behavior: smooth;
         }
 
-        
         .nav {
             position: fixed;
             top: 0;
@@ -32,14 +30,23 @@
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
-            transition: color 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, border 0.3s, transform 0.3s;
         }
 
         .nav a:hover {
-            color: #ffcc80;
+            background-color: #ffcc80;
+            transform: scale(1.1);
         }
 
-        
+        .nav a:nth-child(1) { color: #ff6347; }
+        .nav a:nth-child(2) { color: #ffeb3b; }
+        .nav a:nth-child(3) { color: #64b5f6; }
+        .nav a:nth-child(4) { color: #81c784; }
+        .nav a:nth-child(5) { color: #ff8a65; }
+        .nav a:nth-child(6) { color: #9575cd; }
+
         .section {
             padding: 80px 20px;
             min-height: 100vh;
@@ -49,15 +56,15 @@
             align-items: center;
             border-bottom: 4px solid black;
             opacity: 0;
-            animation: fadeIn 1s forwards;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        
         #home { background-color: #ffeb3b; }
         #habitat { background-color: #64b5f6; }
         #food { background-color: #81c784; }
@@ -96,7 +103,6 @@
             margin-right: auto;
         }
 
-        
         img {
             max-width: 80%;
             height: auto;
@@ -109,7 +115,6 @@
             transform: scale(1.05);
         }
 
-        
         form input, form button, form textarea {
             padding: 10px;
             font-size: 14px;
@@ -130,7 +135,6 @@
             background-color: #ffcc80;
         }
 
-        
         #successMessage {
             display: none;
             background-color: #4caf50;
@@ -141,15 +145,12 @@
             font-size: 18px;
         }
 
-        
         #contactForm {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        
-        /* Добавляем минимальную адаптивность */
         @media (max-width: 768px) {
             .section {
                 padding: 60px 20px;
@@ -167,7 +168,6 @@
                 max-width: 90%;
             }
         }
-        
     </style>
 </head>
 <body>
@@ -181,42 +181,36 @@
         <a href="#contact">Связь</a>
     </div>
 
-    
     <div class="section" id="home">
         <h1>Пингвины</h1>
         <p>Пингвины (лат. Spheniscidae) — семейство нелетающих морских птиц, которые являются одними из самых удивительных созданий на планете. Они обитают преимущественно в Южном полушарии, часто в холодных регионах, таких как Антарктида. Эти птицы хорошо адаптированы к жизни в воде, их тела имеют обтекаемую форму, что помогает им быстро и эффективно плавать.</p>
         <img src="https://avatars.dzeninfra.ru/get-zen_doc/3415135/pub_6007284e267c3f280b39dc42_60072961d5d729006d08d6df/scale_1200" alt="Пингвины">
     </div>
 
-    
     <div class="section" id="habitat">
         <h2>Среда обитания</h2>
         <p>Пингвины встречаются на всех континентах Южного полушария, однако большинство из них предпочитают жить в холодных водах Антарктиды и около её побережья. Они прекрасно адаптировались к жизни в суровых условиях. Несмотря на то, что пингвины проводят почти все время в воде, они также могут жить на суше, где они строят свои гнезда.</p>
         <img src="https://fs1.ppt4web.ru/images/13967/90804/640/img3.jpg" alt="Среда обитания">
     </div>
 
-    
     <div class="section" id="food">
         <h2>Питание</h2>
         <p>Пингвины — хищники, их основной рацион состоит из рыбы, кальмаров, криля и других морских организмов. Они обладают отличными навыками охоты и могут нырять на большие глубины. В зависимости от вида, пингвины могут питаться различными видами рыбы, от мелких анчоусов до более крупных особей.</p>
         <img src="https://i.obozrevatel.com/gallery/2020/4/29/pingvin-lovit-ryibu.jpg" alt="Питание">
     </div>
 
-    
     <div class="section" id="species">
         <h2>Виды</h2>
         <p>Существует 18 видов пингвинов, каждый из которых имеет свои особенности. Одним из самых известных видов является Императорский пингвин, который является крупнейшим представителем семейства. Этот вид может выживать в самых холодных условиях, обитая в Антарктиде.</p>
         <img src="https://futurenow.com.ua/wp-content/uploads/2023/08/image-175.png" alt="Виды пингвинов">
     </div>
 
-    
     <div class="section" id="facts">
         <h2>Интересные факты</h2>
         <p>Пингвины — очень интересные создания. Например, они могут прыгать на высоту до 2 метров, что помогает им преодолевать ледяные барьеры. Еще один факт: пингвины — моногамные животные, и многие виды образуют пары на всю жизнь. Они также используют камни как строительный материал для своих гнезд.</p>
         <img src="https://images.techinsider.ru/upload/img_cache/91c/91c929e74403b25fd29f75c219f03a7c_cropped_666x416.webp" alt="Факты">
     </div>
 
-    
     <div class="section" id="contact">
         <h2>Свяжитесь с нами</h2>
         <p>Если у вас есть вопросы о пингвинах или хотите узнать больше, не стесняйтесь связаться с нами. Мы всегда рады помочь и поделиться интересной информацией!</p>
@@ -234,6 +228,19 @@
             event.preventDefault();
             document.getElementById("successMessage").style.display = "block";
         });
+
+        function handleScroll() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop <= window.innerHeight * 0.8) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Применить анимацию сразу на загруженную страницу
     </script>
 </body>
 </html>
