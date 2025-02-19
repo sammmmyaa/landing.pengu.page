@@ -3,244 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пингвины</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta name="description" content="Узнайте всё о пингвинах — удивительных птицах Южного полушария.">
+    <title>Мир пингвинов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            text-align: center;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f8f0; color: #333; line-height: 1.6; scroll-behavior: smooth; }
 
-        .nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #2d3436;
-            padding: 10px 0;
-            text-align: center;
-            z-index: 1000;
-        }
+        .nav { position: fixed; top: 0; width: 100%; background: #2c3e50; padding: 15px 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .nav a { color: white; text-decoration: none; margin: 0 25px; font-size: 18px; font-weight: 500; transition: color 0.3s, transform 0.3s; }
+        .nav a:hover { color: #4CAF50; transform: scale(1.1); }
 
-        .nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s, border 0.3s, transform 0.3s;
-        }
+        .header { height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding-left: 10%; text-align: left; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://ichef.bbci.co.uk/ace/ws/640/amz/worldservice/live/assets/images/2016/01/12/160112125613_penguins_walking_624x460_thinkstock_nocredit.jpg.webp'); background-size: cover; background-position: center; color: white; }
 
-        .nav a:hover {
-            background-color: #ffcc80;
-            transform: scale(1.1);
-        }
+        .section { min-height: 100vh; padding: 120px 40px 70px; opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; position: relative; }
+        .section.visible { opacity: 1; transform: translateY(0); }
 
-        .nav a:nth-child(1) { color: #ff6347; }
-        .nav a:nth-child(2) { color: #ffeb3b; }
-        .nav a:nth-child(3) { color: #64b5f6; }
-        .nav a:nth-child(4) { color: #81c784; }
-        .nav a:nth-child(5) { color: #ff8a65; }
-        .nav a:nth-child(6) { color: #9575cd; }
+        #home { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+        #about { background: linear-gradient(45deg, #c8e6c9, #a5d6a7); background-image: url('https://unn.ua/img/2024/04/24/1713980809-2701-large.webp'); background-size: cover; background-position: center; }
+        #species { background: linear-gradient(90deg, #a5d6a7, #81c784); }
+        #facts { background: linear-gradient(180deg, #81c784, #66bb6a); }
+        #contact { background: linear-gradient(0deg, #66bb6a, #4CAF50); }
 
-        .section {
-            padding: 80px 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 4px solid black;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease-in-out;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
 
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        h1 { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 30px; color: #2c3e50; font-weight: 700; text-transform: uppercase; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 25px; color: #2c3e50; font-weight: 600; }
 
-        #home { background-color: #ffeb3b; }
-        #habitat { background-color: #64b5f6; }
-        #food { background-color: #81c784; }
-        #species { background-color: #ff8a65; }
-        #facts { background-color: #9575cd; }
-        #contact { background-color: #bdbdbd; }
+        p { font-size: 20px; margin-bottom: 25px; max-width: 800px; color: #555; line-height: 1.8; }
 
-        h1, h2, p {
-            font-size: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+        .block-left { background: white; padding: 30px; margin: 25px 0 25px 20px; max-width: 600px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); float: left; transition: transform 0.4s, box-shadow 0.4s; }
+        .block-right { background: #f9f9f9; padding: 30px; margin: 25px 20px 25px 0; max-width: 600px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); float: right; transition: transform 0.4s, box-shadow 0.4s; }
+        .block-center { background: #fff; padding: 30px; margin: 25px auto; max-width: 700px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: transform 0.4s, box-shadow 0.4s; }
+        .block-left:hover, .block-right:hover, .block-center:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 700;
-            color: #2d3436;
-            margin-bottom: 40px;
-        }
+        .image-block { max-width: 100%; height: auto; border-radius: 15px; margin: 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, opacity 0.3s; }
+        .image-block:hover { transform: scale(1.05); opacity: 0.9; }
 
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 700;
-            color: #2d3436;
-            margin-bottom: 20px;
-        }
+        .btn { display: inline-block; padding: 15px 35px; background: #4CAF50; color: white; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: 500; transition: background 0.4s, transform 0.3s; }
+        .btn:hover { background: #45a049; transform: scale(1.05); }
 
-        p {
-            font-size: 18px;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        form { max-width: 500px; margin: 30px auto; text-align: left; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        form input, form textarea { width: 100%; padding: 15px; margin: 15px 0; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; }
+        form textarea { height: 150px; resize: vertical; }
+        form button { width: 100%; padding: 15px; background: #2c3e50; color: white; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: background 0.4s; }
+        form button:hover { background: #34495e; }
 
-        img {
-            max-width: 80%;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 15px;
-            transition: transform 0.3s;
-        }
+        .slider, .slider-species { max-width: 1000px; margin: 20px auto; overflow: hidden; position: relative; }
+        .slider-container, .slider-species-container { display: flex; transition: transform 0.5s ease-in-out; }
+        .slide, .slide-species { min-width: 100%; text-align: center; padding: 20px; }
+        .slide img, .slide-species img { max-width: 80%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .slide img:hover, .slide-species img:hover { transform: scale(1.05); }
+        .slider-button, .slider-species-button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(44,62,80,0.7); color: white; border: none; padding: 12px 25px; font-size: 24px; cursor: pointer; transition: background 0.3s; }
+        .slider-button:hover, .slider-species-button:hover { background: rgba(44,62,80,0.9); }
+        #prevSlide, #prevSlideSpecies { left: 10px; }
+        #nextSlide, #nextSlideSpecies { right: 10px; }
 
-        img:hover {
-            transform: scale(1.05);
-        }
+        .dots { text-align: center; margin-top: 10px; }
+        .dot { height: 10px; width: 10px; background-color: #bbb; border-radius: 50%; display: inline-block; margin: 0 5px; cursor: pointer; transition: background-color 0.3s; }
+        .dot.active { background-color: #4CAF50; }
 
-        form input, form button, form textarea {
-            padding: 10px;
-            font-size: 14px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 300px;
-            box-sizing: border-box;
-        }
+        .counter { font-size: 24px; color: #2c3e50; margin-top: 20px; animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        form button {
-            background-color: #2d3436;
-            color: white;
-            cursor: pointer;
-        }
+        .pie-chart { width: 200px; height: 200px; background: conic-gradient(#4CAF50 0% 50%, #66bb6a 50% 100%); border-radius: 50%; margin: 20px auto; position: relative; }
+        .pie-chart::after { content: '50% Антарктида'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 16px; }
 
-        form button:hover {
-            background-color: #ffcc80;
-        }
+        .fact-animation { opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
+        .fact-animation.visible { opacity: 1; transform: translateY(0); }
 
-        #successMessage {
-            display: none;
-            background-color: #4caf50;
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-
-        #contactForm {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .map { width: 100%; max-width: 500px; height: 300px; background: #ddd; border-radius: 15px; margin: 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
         @media (max-width: 768px) {
-            .section {
-                padding: 60px 20px;
-            }
-            h1 {
-                font-size: 36px;
-            }
-            h2 {
-                font-size: 30px;
-            }
-            p {
-                font-size: 16px;
-            }
-            img {
-                max-width: 90%;
-            }
+            .nav { padding: 10px 0; }
+            .nav a { margin: 0 15px; font-size: 16px; }
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            p { font-size: 16px; }
+            .section { padding: 80px 20px; }
+            .block-left, .block-right, .block-center { float: none; margin: 15px auto; max-width: 90%; padding: 20px; }
+            .image-block, .slide img, .slide-species img { max-width: 100%; margin: 15px auto; }
+            .btn { padding: 12px 25px; font-size: 16px; }
+            form { max-width: 90%; padding: 20px; }
+            form input, form textarea, form button { padding: 12px; }
+            .header { padding: 0 5% 5%; align-items: center; text-align: center; }
+            .slider, .slider-species { max-width: 90%; }
+            .slider-button, .slider-species-button { padding: 10px 20px; font-size: 20px; }
+            .pie-chart { width: 150px; height: 150px; }
+            .map { max-width: 90%; height: 200px; }
         }
     </style>
 </head>
 <body>
-    
-    <div class="nav">
-        <a href="#home">Пингвины</a>
-        <a href="#habitat">Среда обитания</a>
-        <a href="#food">Питание</a>
+    <nav class="nav">
+        <a href="#home">Главная</a>
+        <a href="#about">О пингвинах</a>
         <a href="#species">Виды</a>
         <a href="#facts">Факты</a>
-        <a href="#contact">Связь</a>
-    </div>
+        <a href="#contact">Контакты</a>
+    </nav>
 
-    <div class="section" id="home">
-        <h1>Пингвины</h1>
-        <p>Пингвины (лат. Spheniscidae) — семейство нелетающих морских птиц, которые являются одними из самых удивительных созданий на планете. Они обитают преимущественно в Южном полушарии, часто в холодных регионах, таких как Антарктида. Эти птицы хорошо адаптированы к жизни в воде, их тела имеют обтекаемую форму, что помогает им быстро и эффективно плавать.</p>
-        <img src="https://avatars.dzeninfra.ru/get-zen_doc/3415135/pub_6007284e267c3f280b39dc42_60072961d5d729006d08d6df/scale_1200" alt="Пингвины">
-    </div>
+    <section class="section header" id="home">
+        <div class="container">
+            <h1>Мир пингвинов</h1>
+            <p>Откройте удивительный мир пингвинов — уникальных птиц Южного полушария. Узнайте, где они живут, чем питаются и почему так очаровательны.</p>
+            <a href="#contact" class="btn">Узнать больше</a>
+            <div class="counter" id="penguinCounter">Оценочная численность: 50 млн пингвинов</div>
+        </div>
+    </section>
 
-    <div class="section" id="habitat">
-        <h2>Среда обитания</h2>
-        <p>Пингвины встречаются на всех континентах Южного полушария, однако большинство из них предпочитают жить в холодных водах Антарктиды и около её побережья. Они прекрасно адаптировались к жизни в суровых условиях. Несмотря на то, что пингвины проводят почти все время в воде, они также могут жить на суше, где они строят свои гнезда.</p>
-        <img src="https://fs1.ppt4web.ru/images/13967/90804/640/img3.jpg" alt="Среда обитания">
-    </div>
+    <section class="section" id="about">
+        <div class="container" style="display: flex; flex-direction: column; align-items: flex-start;">
+            <h2>О пингвинах</h2>
+            <div class="block-left">
+                <p>Пингвины — это нелетающие морские птицы, которые обитают преимущественно в холодных регионах, таких как Антарктида и субантарктические острова. Их обтекаемая форма тела позволяет быстро плавать и охотиться.</p>
+            </div>
+            <div class="block-right" style="margin-top: 20px;">
+                <p>Они проводят большую часть времени в воде, но возвращаются на сушу для гнездования и выведения птенцов. Пингвины известны своей моногамией и сложными социальными взаимодействиями.</p>
+            </div>
+            <div class="pie-chart"></div>
+        </div>
+    </section>
 
-    <div class="section" id="food">
-        <h2>Питание</h2>
-        <p>Пингвины — хищники, их основной рацион состоит из рыбы, кальмаров, криля и других морских организмов. Они обладают отличными навыками охоты и могут нырять на большие глубины. В зависимости от вида, пингвины могут питаться различными видами рыбы, от мелких анчоусов до более крупных особей.</p>
-        <img src="https://i.obozrevatel.com/gallery/2020/4/29/pingvin-lovit-ryibu.jpg" alt="Питание">
-    </div>
+    <section class="section" id="species">
+        <div class="container" style="display: flex; flex-direction: column; align-items: flex-end;">
+            <h2>Виды пингвинов</h2>
+            <div class="block-right">
+                <p>Существует 18 видов пингвинов, включая императорских, королевских, пингвинов Адели и многих других. Каждый вид адаптирован к своим условиям обитания.</p>
+            </div>
+            <div class="slider slider-species" style="margin-top: 20px;">
+                <div class="slider-species-container">
+                    <div class="slide-species"><img src="https://avatars.dzeninfra.ru/get-zen_doc/1916740/pub_622f4f222f1d35617f38f8c3_622f5772df104c70a30d283c/scale_1200" alt="Императорский пингвин"></div>
+                    <div class="slide-species"><img src="https://www.ecobyt.ru/files/u2107/pygoscelis.jpg" alt="Королевский пингвин"></div>
+                    <div class="slide-species"><img src="https://i.pinimg.com/736x/8a/40/7d/8a407d27317e94546660afe0bba40d13.jpg" alt="Пингвин Адели"></div>
+                </div>
+                <button id="prevSlideSpecies" class="slider-species-button">❮</button>
+                <button id="nextSlideSpecies" class="slider-species-button">❯</button>
+            </div>
+            <div class="dots" id="speciesDots"></div>
+            <p style="text-align: right; max-width: 800px; margin-right: 0; margin-left: auto; margin-top: 20px;">Императорский пингвин — самый крупный, а пингвины Адели — одни из самых выносливых.</p>
+        </div>
+    </section>
 
-    <div class="section" id="species">
-        <h2>Виды</h2>
-        <p>Существует 18 видов пингвинов, каждый из которых имеет свои особенности. Одним из самых известных видов является Императорский пингвин, который является крупнейшим представителем семейства. Этот вид может выживать в самых холодных условиях, обитая в Антарктиде.</p>
-        <img src="https://futurenow.com.ua/wp-content/uploads/2023/08/image-175.png" alt="Виды пингвинов">
-    </div>
+    <section class="section" id="facts">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <h2>Интересные факты</h2>
+            <div class="block-center">
+                <p class="fact-animation" style="animation-delay: 0s;">Пингвины могут прыгать на высоту до 2 метров.</p>
+                <p class="fact-animation" style="animation-delay: 0.5s;">Они моногамны и часто пары сохраняются на всю жизнь.</p>
+                <p class="fact-animation" style="animation-delay: 1s;">Для гнёзд они используют камни, которые собирают с большим тщанием.</p>
+            </div>
+            <img src="https://www.factroom.ru/wp-content/uploads/2019/09/pinguin.jpg" alt="Факты о пингвинах" class="image-block" style="max-width: 60%; margin-top: 20px;">
+            <a href="#contact" class="btn" style="margin-top: 20px;">Узнать ещё</a>
+        </div>
+    </section>
 
-    <div class="section" id="facts">
-        <h2>Интересные факты</h2>
-        <p>Пингвины — очень интересные создания. Например, они могут прыгать на высоту до 2 метров, что помогает им преодолевать ледяные барьеры. Еще один факт: пингвины — моногамные животные, и многие виды образуют пары на всю жизнь. Они также используют камни как строительный материал для своих гнезд.</p>
-        <img src="https://images.techinsider.ru/upload/img_cache/91c/91c929e74403b25fd29f75c219f03a7c_cropped_666x416.webp" alt="Факты">
-    </div>
-
-    <div class="section" id="contact">
-        <h2>Свяжитесь с нами</h2>
-        <p>Если у вас есть вопросы о пингвинах или хотите узнать больше, не стесняйтесь связаться с нами. Мы всегда рады помочь и поделиться интересной информацией!</p>
-        <form id="contactForm">
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="email" placeholder="Ваш email" required>
-            <textarea placeholder="Ваше сообщение" required></textarea>
-            <button type="submit">Отправить</button>
-        </form>
-        <div id="successMessage">Вы заполнили форму, скоро вам ответим!</div>
-    </div>
+    <section class="section" id="contact">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <h2>Свяжитесь с нами</h2>
+            <div class="block-left" style="margin-right: auto; margin-left: 0;">
+                <p>Хотите узнать больше о пингвинах или организовать экскурсию? Напишите нам, и мы ответим в кратчайшие сроки!</p>
+            </div>
+            <div class="map"></div>
+            <form style="margin-top: 20px;">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="email" placeholder="Ваш email" required>
+                <input type="tel" placeholder="Ваш телефон" required>
+                <textarea placeholder="Ваше сообщение" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </section>
 
     <script>
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            document.getElementById("successMessage").style.display = "block";
-        });
-
-        function handleScroll() {
+        window.addEventListener('scroll', function() {
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                if (sectionTop <= window.innerHeight * 0.8) {
+                if (window.scrollY > section.offsetTop - window.innerHeight + 100) {
                     section.classList.add('visible');
+                    if (section.id === 'facts') {
+                        const facts = section.querySelectorAll('.fact-animation');
+                        facts.forEach(fact => fact.classList.add('visible'));
+                    }
                 }
             });
+        });
+
+        let slideIndexSpecies = 0;
+        const slidesSpecies = document.querySelector('#species .slider-species-container');
+        const totalSlidesSpecies = document.querySelectorAll('#species .slide-species').length;
+
+        function showSlideSpecies(index) {
+            if (index < 0) slideIndexSpecies = totalSlidesSpecies - 1;
+            else if (index >= totalSlidesSpecies) slideIndexSpecies = 0;
+            slidesSpecies.style.transform = `translateX(-${slideIndexSpecies * 100}%)`;
+
+            const dots = document.querySelectorAll('#speciesDots .dot');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[slideIndexSpecies].classList.add('active');
         }
 
-        window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Применить анимацию сразу на загруженную страницу
+        document.getElementById('nextSlideSpecies').addEventListener('click', () => {
+            slideIndexSpecies++;
+            showSlideSpecies(slideIndexSpecies);
+        });
+
+        document.getElementById('prevSlideSpecies').addEventListener('click', () => {
+            slideIndexSpecies--;
+            showSlideSpecies(slideIndexSpecies);
+        });
+
+        const dotsContainer = document.getElementById('speciesDots');
+        for (let i = 0; i < totalSlidesSpecies; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                slideIndexSpecies = i;
+                showSlideSpecies(slideIndexSpecies);
+            });
+            dotsContainer.appendChild(dot);
+        }
+
+        setInterval(() => {
+            slideIndexSpecies++;
+            showSlideSpecies(slideIndexSpecies);
+        }, 5000);
+
+        const counter = document.getElementById('penguinCounter');
+        let count = 0;
+        const target = 50;
+        const speed = 100;
+
+        function updateCounter() {
+            if (count < target) {
+                count++;
+                counter.textContent = `Оценочная численность: ${count} млн пингвинов`;
+                setTimeout(updateCounter, speed);
+            } else {
+                counter.textContent = `Оценочная численность: ${target} млн пингвинов`;
+            }
+        }
+
+        window.addEventListener('load', updateCounter);
     </script>
 </body>
 </html>
